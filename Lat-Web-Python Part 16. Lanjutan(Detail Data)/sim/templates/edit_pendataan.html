@@ -1,0 +1,63 @@
+{%extends "base.html"%}
+
+
+
+{%block konten%}
+<div class="jumbotron">
+
+    <h3>Edit Pengaduan</h3>
+    <!---form pengaduan-->
+
+    <form method="POST">
+        {{form.hidden_tag()}}
+    <div class="from-group">
+        {{form.kategori_surat.label(class="form-control-label")}}
+        {% if form.kategori_surat.errors %}
+            {{form.kategori_surat(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.kategori_surat.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.kategori_surat(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.surat.label(class="form-control-label")}}
+        {% if form.surat.errors %}
+            {{form.surat(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.surat.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.surat(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.detail_surat.label(class="form-control-label")}}
+        {% if form.detail_surat.errors %}
+            {{form.detail_surat(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.detail_surat.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.detail_surat(class="form-control")}}
+        {% endif %}
+    </div>
+    
+    <br>
+    <div class="group-form">
+        {{form.submit(class="btn btn-warning")}}
+        <a class="btn btn-secondary" href="{{url_for('rmahasiswa.pendataan')}}">Kembali</a>
+    </div>
+</form>
+</div>
+{% endblock %}

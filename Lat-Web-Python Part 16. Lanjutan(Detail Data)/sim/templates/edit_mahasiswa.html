@@ -1,0 +1,112 @@
+{%extends "base.html"%}
+
+
+{%block konten%}
+
+<h1>Update Data Profil</h1>
+<form method="POST" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+    <div class="from-group">
+        {{form.npm.label(class="form-control-label")}}
+        {% if form.npm.errors %}
+            {{form.npm(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.npm.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.npm(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.nama.label(class="form-control-label")}}
+        {{form.nama(class="form-control")}}
+    </div>
+    <div class="from-group">
+        {{form.email.label(class="form-control-label")}}
+        {% if form.email.errors %}
+            {{form.email(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.email.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+        {{form.email(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.kelas.label(class="form-control-label")}}
+        {% if form.kelas.errors %}
+            {{form.kelas(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.kelas.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.kelas(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.alamat.label(class="form-control-label")}}
+        {{form.alamat(class="form-control")}}
+    </div>
+    <div class="from-group">
+        {{form.password.label(class="form-control-label")}}
+        {% if form.password.errors %}
+            {{form.password(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                <span>{{errors}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.password(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.konf_pass.label(class="form-control-label")}}
+        {% if form.konf_pass.errors %}
+            {{form.konf_pass(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.konf_pass.errors %}
+                <span>{{errors}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.konf_pass(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.foto.label(class="form-control-label")}}
+        {% if form.foto.errors %}
+            {{form.foto(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.foto.errors %}
+                <span>{{errors}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.foto(class="form-control")}}
+        {% endif %}
+    </div>
+    <br>
+    <div class="group-form">
+        {{form.submit(class="btn btn-primary")}}
+    </div>
+</form>
+
+
+{%endblock%}
+
+    
+    
+ 

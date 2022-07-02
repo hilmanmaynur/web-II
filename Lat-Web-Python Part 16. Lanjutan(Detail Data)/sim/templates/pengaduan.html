@@ -1,0 +1,128 @@
+{%extends "base.html"%}
+
+
+
+{%block konten%}
+<div class="jumbotron">
+
+    <h3>Pengaduan</h3>
+    <!---form pengaduan-->
+
+    <form method="POST">
+        {{form.hidden_tag()}}
+    <div class="from-group">
+        {{form.subjek.label(class="form-control-label")}}
+        {% if form.subjek.errors %}
+            {{form.subjek(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.subjek.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.subjek(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.kategori.label(class="form-control-label")}}
+        {% if form.kategori.errors %}
+            {{form.kategori(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.kategori.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.kategori(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.detail_pengaduan.label(class="form-control-label")}}
+        {% if form.detail_pengaduan.errors %}
+            {{form.detail_pengaduan(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.detail_pengaduan.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.detail_pengaduan(class="form-control")}}
+        {% endif %}
+    </div>
+    
+    <br>
+    <div class="group-form">
+        {{form.submit(class="btn btn-primary")}}
+    </div>
+</form>
+
+<!--script>
+    function klik_hapus(value){
+        let valid_link = document.getElementById('del-hapus')
+        valid_link.href="/delete/"+ value
+    }
+</script-->
+
+    <hr class="my-4">
+    <h4>Data Pengaduan</h4>
+    <div class="table-responsive">
+    <table class="table table-hover table-info">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tgl</th>
+                <th scope="col">Subjek</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Hapus</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in dt_pengaduan %}
+            <tr>
+                <th>
+                    <a href="{{url_for('rmahasiswa.detail_pengaduan', ed_id=data.id)}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-left-square-fill" viewBox="0 0 16 16">
+                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm8.096 10.803L6 6.707v2.768a.5.5 0 0 1-1 0V5.5a.5.5 0 0 1 .5-.5h3.975a.5.5 0 1 1 0 1H6.707l4.096 4.096a.5.5 0 1 1-.707.707z"/>
+                        </svg>
+                    </a>
+                </th>
+                <td>{{data.tgl_post}}</td>
+                <td>{{data.subjek}}</td>
+                <td>{{data.kategori}}</td>  
+                <td><a class="btn btn-outline-warning" href="{{url_for('rmahasiswa.update_pengaduan', ed_id=data.id)}}">Edit</a></td>
+                <td><a class="btn btn-outline-danger" href="/delete/{{data.id}}" onclick="return confirm('Yakin data dihapus')"> Hapus</a></td>
+            </tr>
+            {% endfor %}
+            <!---modals hapus-->
+
+            <!--div class="modal" tabindex="-1" role="dialog" id="modals-hapus">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Konfirmasi Hapus</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Apakah anda yakin menghapus data ini</p>
+                    </div>
+                    <div class="modal-footer">
+                    <form action="">
+                        <a class="btn btn-warning" id="del-hapus">Hapus</a>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> 
+                    </div>
+                  </div>
+                </div>
+              </div-->
+        </tbody>
+    </table>
+    </div>
+</div>
+
+{% endblock %}

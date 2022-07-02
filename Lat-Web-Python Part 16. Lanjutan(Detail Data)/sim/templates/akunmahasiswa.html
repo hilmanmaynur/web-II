@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+
+
+
+{%block konten%}
+<div class="jumbotron">
+    <h1 class="display-4">Hello, {{current_user.nama}}</h1>
+    <p class="leat">Selamat Datang di Distem Informasi Pengaduan. Semoga segala pengaduan anda menjadi perbaikan kami</p>
+    <hr class="my-4">
+    <p>Kilk untuk memulai pengaduan anda</p>
+    <a href="{{url_for('rmahasiswa.pengaduan')}}" class="btn btn-primary btn-lg" role="button">Pengaduan</a>
+</div>
+
+{%endblock%}

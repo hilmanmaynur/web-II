@@ -1,0 +1,50 @@
+{%extends "base.html"%}
+
+
+{%block konten%}
+
+<h1>Login Mahasiswa</h1>
+<form method="POST">
+        {{form.hidden_tag()}}
+    <div class="from-group">
+        {{form.npm.label(class="form-control-label")}}
+        {% if form.npm.errors %}
+            {{form.npm(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.npm.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.npm(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.password.label(class="form-control-label")}}
+        {% if form.password.errors %}
+            {{form.password(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.password(class="form-control")}}
+        {% endif %}
+    </div>
+    <br>
+    <div class="group-form">
+        {{form.submit(class="btn btn-primary")}}
+    </div>
+
+    <span><a href="{{url_for('rmahasiswa.data_m')}}">Daftar Akun</a></span>
+</form>
+
+
+{%endblock%}
+
+    
+    
+ 

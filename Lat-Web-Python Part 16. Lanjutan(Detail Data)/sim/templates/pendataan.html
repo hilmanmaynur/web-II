@@ -1,0 +1,118 @@
+{%extends "base.html"%}
+
+
+
+{%block konten%}
+<div class="jumbotron">
+
+    <h3>Pendataan Surat</h3>
+    <!---form pengaduan-->
+
+    <form method="POST">
+        {{form.hidden_tag()}}
+    <div class="from-group">
+        {{form.kategori_surat.label(class="form-control-label")}}
+        {% if form.kategori_surat.errors %}
+            {{form.kategori_surat(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.kategori_surat.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.kategori_surat(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.surat.label(class="form-control-label")}}
+        {% if form.surat.errors %}
+            {{form.surat(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.surat.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.surat(class="form-control")}}
+        {% endif %}
+    </div>
+    <div class="from-group">
+        {{form.detail_surat.label(class="form-control-label")}}
+        {% if form.detail_surat.errors %}
+            {{form.detail_surat(class="form-control is-invalid")}}
+
+            <div class="invalid-feedback">
+                {% for error in form.detail_surat.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{form.detail_surat(class="form-control")}}
+        {% endif %}
+    </div>
+    
+    <br>
+    <div class="group-form">
+        {{form.submit(class="btn btn-primary")}}
+    </div>
+</form>
+
+<hr class="my-4">
+    <h4>Pendataan Surat</h4>
+    <div class="table-responsive">
+    <table class="table table-hover table-info">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tgl</th>
+                <th scope="col">Kategori Surat</th>
+                <th scope="col">Surat</th>
+                <th scope="col">Detail Surat</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Hapus</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in dt_pendataan %}
+            <tr>
+                <th>#</th>
+                <td>{{data.tgl_surat}}</td>
+                <td>{{data.kategori_surat}}</td>
+                <td>{{data.surat}}</td>  
+                <td>{{data.detail_surat}}</td>  
+                <td><a class="btn btn-outline-warning" href="{{url_for('rmahasiswa.update_pendataan', ed_id=data.id)}}">Edit</a></td>
+                <td><a class="btn btn-outline-danger" href="/delete1/{{data.id}}" onclick="return confirm('Yakin data dihapus')"> Hapus</a></td>
+            </tr>
+            {% endfor %}
+            <!---modals hapus-->
+
+            <!--div class="modal" tabindex="-1" role="dialog" id="modals-hapus">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Konfirmasi Hapus</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Apakah anda yakin menghapus data ini</p>
+                    </div>
+                    <div class="modal-footer">
+                    <form action="">
+                        <a class="btn btn-warning" id="del-hapus">Hapus</a>
+                    </form>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> 
+                    </div>
+                  </div>
+                </div>
+              </div-->
+        </tbody>
+    </table>
+    </div>
+</div>
+
+
+{% endblock %}
